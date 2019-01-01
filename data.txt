@@ -1,0 +1,38 @@
+CREATE (Martha:Teacher {full_name: "Martha Stevens", birth_year: 1982, salary: 3600}),
+(Ray:Teacher {full_name: "Ray Johnson", birth_year: 1986, salary: 4200}),
+(Tony: Teacher {full_name: "Tony Marshall", birth_year: 1970, salary: 13000}),
+(Jasmin: Teacher {full_name: "Jasmin Jay", birth_year: 1980, salary: 10000}),
+(Clara: Teacher {full_name: "Clara Jackson", birth_year: 1960, salary: 14000}),
+(Mark: Teacher {full_name: "Mark Robinson", birth_year: 1988, salary: 7000})
+
+CREATE (Samy: Student{full_name: "Samy Jones", birth_year: 1998, hobbies:["Painting","Cycling"]}),
+(Alison: Student{full_name: "Alison Cooper", birth_year: 1997, hobbies:["Gardening","Cycling", "Sketching"]}),
+(Ruth: Student{full_name: "Ruth Green", birth_year: 1997, hobbies:["Cooking","Sketching"]}),
+(Liam: Student{full_name: "Liam Baker", birth_year: 1998, hobbies:["Writing"]}),
+(Jessica: Student{full_name: "Jessica Dsouza", birth_year: 1998, hobbies:["Reading","Writing"]}),
+(Hannah: Student{full_name: "Hannah", birth_year: 1998, hobbies:["Music"]}),
+(Robert: Student{full_name: "Robert Jack", birth_year: 1996, hobbies:["Painting, Dancing"]}),
+(Jake: Student{full_name: "Jake Montgomery", birth_year: 1997, hobbies:["Baking"]}),
+(Mike: Student{full_name: "Mike Arthur", birth_year: 1998, hobbies:["Music"]})
+
+CREATE (ComputerScience:Department{name:"Computer Science"}),(Electronics:Department{name:"Electronics"})
+
+CREATE (ml:Course{name:"Machine Learning",duration:40, max_students:10}),(dl:Course{name:"Deep Learning",duration:80, max_students:10}),
+(ip:Course{name:"Image Processing",duration:34, max_students:20}),(ie:Course{name:"Industrial Electronics",duration:35, max_students:15}),
+(adc:Course{name:"Analog and Digital Communication",duration:45, max_students:18}),(sp:Course{name:"Signal Processing",duration:48, max_students:10})
+
+CREATE (Martha)-[:TEACHES]->(ml),(dl)<-[:Teaches]-(Ray)-[:TEACHES]->(ml),(Tony)-[:TEACHES]->(dl), (Tony)-[:TEACHES]->(ml), (Tony)-[:TEACHES]->(ip),
+(Jasmin)-[:TEACHES]->(ie), (Jasmin)-[:TEACHES]->(adc),
+(Clara)-[:TEACHES]->(ie), (Clara)-[:TEACHES]->(adc), (Clara)-[:TEACHES]->(sp),
+(Mark)-[:TEACHES]->(sp), (Mark)-[:TEACHES]->(adc)
+
+CREATE (Samy)-[:ENROLLED_IN]->(ml), (Samy)-[:ENROLLED_IN]->(dl), (Samy)-[:ENROLLED_IN]->(ip), (Jessica)-[:ENROLLED_IN]->(ml), (Jessica)-[:ENROLLED_IN]->(dl), (Jessica)-[:ENROLLED_IN]->(ie),
+(Alison)-[:ENROLLED_IN]->(ml), (Alison)-[:ENROLLED_IN]->(ie), (Alison)-[:ENROLLED_IN]->(adc), (Alison)-[:ENROLLED_IN]->(sp), (Ruth)-[:ENROLLED_IN]->(ie), (Ruth)-[:ENROLLED_IN]->(sp),
+(Liam)-[:ENROLLED_IN]->(ml), (Liam)-[:ENROLLED_IN]->(dl), (Liam)-[:ENROLLED_IN]->(adc), (Liam)-[:ENROLLED_IN]->(sp), (Hannah)-[:ENROLLED_IN]->(dl), (Robert)-[:ENROLLED_IN]->(ml), 
+(Robert)-[:ENROLLED_IN]->(dl), (Robert)-[:ENROLLED_IN]->(ip), (Robert)-[:ENROLLED_IN]->(ie), (Robert)-[:ENROLLED_IN]->(adc), (Robert)-[:ENROLLED_IN]->(sp), (Jake)-[:ENROLLED_IN]->(ie), 
+(Mike)-[:ENROLLED_IN]->(ml), (Mike)-[:ENROLLED_IN]->(dl), (Mike)-[:ENROLLED_IN]->(ip)
+
+CREATE (Samy)-[:LIKES]->(Martha), (Samy)-[:LIKES]->(Ray), (Jessica)-[:LIKES]->(Martha), (Jessica)-[:LIKES]->(Jasmin), (Jessica)-[:LIKES]->(Tony), (Liam)-[:LIKES]->(Martha),
+(Alison)-[:LIKES]->(Jasmin), (Robert)-[:LIKES]->(Clara)
+
+CREATE (ComputerScience)-[:Has]->(Martha), (ComputerScience)-[:Has]->(Ray), (ComputerScience)-[:Has]->(Tony), (Electronics)-[:Has]->(Jasmin), (Electronics)-[:Has]->(Clara), (Electronics)-[:Has]->(Mark)
